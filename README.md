@@ -28,9 +28,9 @@ This repo contains a very simple k8s deployment for:
 
 Create an S3 bucket
 
-`$ make build` should build all images needed for the project
+`$ S3_BUCKET=bucket HUB_ACCOUNT=account make build` should build all images needed for the project
 
-`$ make push` should push the images to your docker hub
+`$ HUB_ACCOUNT=account make push` should push the images to your docker hub
 
 **Example of command:**
 
