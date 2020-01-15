@@ -65,3 +65,7 @@ Most likely default will be present at least
 5. `$ S3_BUCKET=bucket AWS_PROFILE=aws_profile GIT_REPO=account/repo HUB_ACCOUNT=account make delete` should delete the cluster
 
 TODO: when deleting the cluster it will raise errors on the istio removal, not sure if I want to fix it
+
+TODO: Might need following for proper publishing via mlflow server
+S3_ENDPOINT=s3-eu-west-1.amazonaws.com
+AWS_REGION=eu-west-1

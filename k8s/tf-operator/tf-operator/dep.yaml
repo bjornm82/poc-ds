@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tf-operator
+  labels:
+    app: tf-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tf-operator
+  template:
+    metadata:
+      labels:
+        app: tf-operator
+    spec:
+      containers:
+      - name: tf-operator
+        image: {{HUB_ACCOUNT}}/tf-operator:latest
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 5000

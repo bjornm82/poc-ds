@@ -3,7 +3,10 @@ include k8s/mlflow/Makefile
 include k8s/jupyter/Makefile
 include k8s/seldon/Makefile
 include k8s/istio/Makefile
+include k8s/tf-operator/Makefile
+
 include docker/mlflow/Makefile
+include docker/tf-operator/Makefile
 
 GIT_REPO ?= bjornm82/mlflow-test
 HUB_ACCOUNT ?= bjornmooijekind
@@ -14,10 +17,12 @@ AWS_ACCESS_KEY_ID := $(shell aws configure get aws_access_key_id --profile ${AWS
 AWS_SECRET_ACCESS_KEY := $(shell aws configure get aws_secret_access_key --profile ${AWS_PROFILE})
 
 .phony: build
-build: build-mlflow
+build: build-mlflow \
+	build-tf-operator
 
 .phony: push
-push: push-mlflow
+push: push-mlflow \
+	push-tf-operator
 
 .phony: create
 create: helm-init \
@@ -26,12 +31,14 @@ create: helm-init \
 	create-argo-all \
 	create-mlflow-all \
 	create-jupyter-all \
+	create-tf-operator-all \
 	create-seldon-all
 
 .phony: delete
 delete: delete-argo-all \
 	delete-mlflow-all \
 	delete-jupyter-all  \
+	delete-tf-operator-all \
 	delete-seldon-all \
 	delete-istio-all
 
