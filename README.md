@@ -26,26 +26,42 @@ This repo contains a very simple k8s deployment for:
 
 ## Getting started
 
-Create an S3 bucket
+1. Create an S3 bucket of your choice
 
-`$ S3_BUCKET=bucket HUB_ACCOUNT=account make build` should build all images needed for the project
+2. `$ S3_BUCKET=bucket HUB_ACCOUNT=account make build` should build all images needed for the project
 
-`$ HUB_ACCOUNT=account make push` should push the images to your docker hub
+3. `$ HUB_ACCOUNT=account make push` should push the images to your docker hub
 
-**Example of command:**
+4. `$ S3_BUCKET=bucket AWS_PROFILE=aws_profile GIT_REPO=account/repo HUB_ACCOUNT=account make create` should create the cluster
 
-```
-$ S3_BUCKET=bucket AWS_PROFILE=personal GIT_REPO=account/repo HUB_ACCOUNT=account make create
-```
+5. `$ S3_BUCKET=bucket AWS_PROFILE=aws_profile GIT_REPO=account/repo HUB_ACCOUNT=account make delete` should delete the cluster
 
-When replacing values with your own, the command should create the cluster.
+TODO: when deleting the cluster it will raise errors on the istio removal, not sure if I want to fix it
 
 ## Notes
+
+#### Check login docker
 
 Check if you're logged in at the docker registry via cli
 
 `$ docker login`
 
+if you're already authenticated it will show
+
+```
+Authenticating with existing credentials...
+Login Succeeded
+```
+
+#### Check AWS credentials
+
 Check for if your credentials are set within via aws cli
 
 `$ aws configure get aws_access_key_id --profile {profile}`
+
+#### AWS Profile
+Verify the profile you want to use
+
+`$ cat ~/.aws/credentials`
+
+Most likely default will be present at least
