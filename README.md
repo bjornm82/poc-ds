@@ -69,3 +69,8 @@ TODO: when deleting the cluster it will raise errors on the istio removal, not s
 TODO: Might need following for proper publishing via mlflow server
 S3_ENDPOINT=s3-eu-west-1.amazonaws.com
 AWS_REGION=eu-west-1
+
+## Notes
+
+Login argocd by using the username admin and password is the name of the pod
+Login kiali has default admin / admin username and password
