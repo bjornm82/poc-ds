@@ -17,6 +17,7 @@ This repo contains a very simple k8s deployment for:
 * Access to S3 (via cli will inject the credentials)
 
 * make
+* DVC version 0.80.0 (brew)
 * istioctl version 1.4.3 (brew)
 * helm version 2.16.1 not 3.x (brew)
 * kubernetes > version 1.12 (recommended docker for mac)
@@ -52,17 +53,28 @@ Verify the profile you want to use
 
 Most likely default will be present at least
 
-## Getting started
+#### DVC remote
+Adding all data to a remote versioned environment
 
-1. Create an S3 bucket of your choice
+`$ dvc init` in your code repository
 
-2. `$ S3_BUCKET=bucket HUB_ACCOUNT=account make build` should build all images needed for the project
+`$ dvc remote add -d {name_remote} s3://{bucket}/{folder}`
 
-3. `$ HUB_ACCOUNT=account make push` should push the images to your docker hub
+Flag -d will ensure that {name_remote} is the default location
 
-4. `$ S3_BUCKET=bucket AWS_PROFILE=aws_profile GIT_REPO=account/repo HUB_ACCOUNT=account make create` should create the cluster
+## Getting started (setup)
 
-5. `$ S3_BUCKET=bucket AWS_PROFILE=aws_profile GIT_REPO=account/repo HUB_ACCOUNT=account make delete` should delete the cluster
+1. Set your profile by ENV var for the right AWS account `$ AWS_PROFILE=personal`
+
+2. Create an S3 bucket of your choice
+
+3. `$ S3_BUCKET=bucket HUB_ACCOUNT=account make build` should build all images needed for the project
+
+4. `$ HUB_ACCOUNT=account make push` should push the images to your docker hub
+
+5. `$ S3_BUCKET=bucket AWS_PROFILE=aws_profile GIT_REPO=account/repo HUB_ACCOUNT=account make create` should create the cluster
+
+6. `$ S3_BUCKET=bucket AWS_PROFILE=aws_profile GIT_REPO=account/repo HUB_ACCOUNT=account make delete` should delete the cluster
 
 TODO: when deleting the cluster it will raise errors on the istio removal, not sure if I want to fix it
 
@@ -73,4 +85,6 @@ AWS_REGION=eu-west-1
 ## Notes
 
 Login argocd by using the username admin and password is the name of the pod
+`$ kubectl get pods -n argocd | grep argocd-server | awk '{print $1}'`
+
 Login kiali has default admin / admin username and password
