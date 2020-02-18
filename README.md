@@ -10,6 +10,10 @@ This repo contains a very simple k8s deployment for:
 * Seldon
 * Istio
 
+* MinIO
+* Registry
+* Git
+
 ## Prerequisites
 
 * Access to dockerhub and logged in via console
