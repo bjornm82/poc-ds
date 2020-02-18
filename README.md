@@ -44,6 +44,13 @@ Authenticating with existing credentials...
 Login Succeeded
 ```
 
+#### Adding domain to your hosts
+Check if the domain `docker.me` is added to your hosts
+```
+$ cat /etc/hosts
+127.0.0.1       localhost docker.me
+```
+
 #### Check AWS credentials
 
 Check for if your credentials are set within via aws cli
