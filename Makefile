@@ -7,6 +7,7 @@ include k8s/tf-operator/Makefile
 include k8s/minio/Makefile
 include k8s/gogs/Makefile
 include k8s/registry/Makefile
+include k8s/concourse/Makefile
 
 include docker/mlflow/Makefile
 include docker/tf-operator/Makefile
@@ -40,6 +41,7 @@ push: push-mlflow \
 create: helm-init \
 	label-namespaces \
 	create-gogs \
+	create-concourse \
 	create-registry \
 	create-minio \
 	create-istio-all \
@@ -53,6 +55,7 @@ create: helm-init \
 delete: delete-argo-all \
 	delete-gogs \
 	delete-registry \
+	delete-concourse \
 	delete-minio \
 	delete-mlflow-all \
 	delete-jupyter-all  \
