@@ -87,11 +87,17 @@ Flag -d will ensure that {name_remote} is the default location
 
 6. `$ S3_BUCKET=bucket AWS_PROFILE=aws_profile GIT_REPO=account/repo HUB_ACCOUNT=account make delete` should delete the cluster
 
+When everything has been executed, following pods should be shown:
+
+![Final list pods](https://raw.githubusercontent.com/bjornm82/poc-ds/master/assets/final_list_pods.png)
+
 TODO: when deleting the cluster it will raise errors on the istio removal, not sure if I want to fix it
 
 TODO: Might need following for proper publishing via mlflow server
 S3_ENDPOINT=s3-eu-west-1.amazonaws.com
 AWS_REGION=eu-west-1
+
+TODO: Change all to MinIO, registry and gogs for development purpose
 
 ## Notes
 
